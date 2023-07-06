@@ -43,7 +43,7 @@ const usersController = {
                     userName: userName,
                     token: token
                 }, {
-                    httpOnly: true,
+                    httpOnly: false,
                     maxAge: 7 * 24 * 60 * 60 * 1000
                 }
             );
@@ -52,7 +52,16 @@ const usersController = {
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
-    }
+    },
+    logout: (req, res) => {
+        try {
+            res.clearCookie("credentials", {path: "/"});
+            
+            return res.status(200).json({msg: "Logged out"});
+        } catch (error) {
+            return res.status(500).json({msg: err.message});
+        }
+    },
 };
 
 const createToken = (payload) => {

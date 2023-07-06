@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 const Login = () => {
-
     const [credentials, setCredentials] = useState({userName: "", password: ""});
     const [err, setErr] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCredentials((prev) => ({...prev, [name]: value}));
+        setCredentials({...credentials, [name]: value});
     }
 
-    const { userName, password} = credentials;
+    const { userName, password } = credentials;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErr("");
         axios.post("/auth/login", { userName, password }).then(() => {
-            localStorage.setItem("firstLogin", true);
+            window.location.href = "/";
+            localStorage.setItem("isLogged", true);
         }).catch((error) => {
             setErr(error.response.data.msg);
         });
@@ -49,4 +49,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
