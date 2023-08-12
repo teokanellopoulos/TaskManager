@@ -10,6 +10,7 @@ router.get("/getTask", auth, usersController.getTask);
 router.patch("/updateTask", auth, usersController.updateTask);
 router.delete("/deleteTask", auth, usersController.deleteTask);
 router.patch("/completeTask", auth, usersController.completeTask);
+router.delete("/deleteAccount", auth, usersController.deleteAccount);
 router.get("/logout", usersController.logout);
 
 module.exports = router;

@@ -12,7 +12,7 @@ const Navbar = () => {
             localStorage.removeItem("isLogged");
             window.location.href = "/";
         } catch (error) {
-            window.location.href = "/";
+            console.log(error);
         }
     }
 
@@ -24,6 +24,7 @@ const Navbar = () => {
                         <>
                             {user.userName}
                             <li><Link to="/">Menu</Link></li>
+                            <li><Link to="/deleteAccount">Delete account</Link></li>
                             <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
                         </> :
                         <>

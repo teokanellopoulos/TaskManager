@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import TaskCreation from "./components/TaskCreation";
 import UpdateTask from "./components/UpdateTask";
+import DeleteAccount from "./components/DeleteAccount";
 
 export const UserData = createContext();
 
@@ -35,6 +36,7 @@ const App = () => {
                         <Route path="/register" element={!isLogged ? <Register /> : <div>You are already logged in</div>} />
                         <Route path="/createTask" element={isLogged ? <TaskCreation /> : <div>You are not logged in</div>} />
                         <Route path="/updateTask/:id" element={isLogged ? <UpdateTask /> : <div>You are not logged in</div>} />
+                        <Route path="/deleteAccount" element={isLogged ? <DeleteAccount/> : <div>You are not logged in</div>} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </UserData.Provider>

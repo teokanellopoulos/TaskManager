@@ -4,6 +4,8 @@ import { UserData } from "../App";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Menu = () => {
     const navigate = useNavigate();
@@ -56,6 +58,7 @@ const Menu = () => {
 
                 return 0;
             }));
+            toast.success("Task completed");
         } catch (error) {
             console.log(error);
         }
@@ -84,7 +87,7 @@ const Menu = () => {
                             <div key={i}>
                                 {task.taskname} {task.dateofcompletion}
                                 {task.status === true ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faXmark} />}
-                                <button onClick={() => handleUpdate(task.taskid)}>Update</button>
+                                {task.status === false ? <button onClick={() => handleUpdate(task.taskid)}>Update</button> : <></>}
                                 <button onClick={() => handleDelete(task.taskid)}>Delete</button>
                                 {task.status === false ? <button onClick={() => handleComplete(task.taskid)}>Complete</button> : <></>}
                             </div>
@@ -94,6 +97,7 @@ const Menu = () => {
                 :
                 <div>Welcome to taskManager. Login to create and manage your tasks</div>
             }
+            <ToastContainer/>
         </div>
     )
 }

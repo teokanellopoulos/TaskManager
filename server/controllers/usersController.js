@@ -134,6 +134,15 @@ const usersController = {
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
+    },
+    deleteAccount: async (req, res) => {
+        try {
+            await db.query("DELETE FROM tasks WHERE userid = $1", [req.id]);
+            await db.query("DELETE FROM users WHERE userid = $1", [req.id]);
+            return res.status(200).json({msg: "Account deletion complete"});
+        } catch (error) {
+            return res.status(500).json({ msg: error.message });
+        }
     }
 };
 
