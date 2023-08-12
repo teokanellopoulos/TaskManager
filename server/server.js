@@ -9,7 +9,7 @@ app.use(cors());
 app.use(cookieParser());
 
 //initialize routes
-app.use("/auth", require("./routes/usersRouter.js"));
+app.use("/taskManager", require("./routes/usersRouter.js"));
 
 app.listen(4000, () => {
     console.log("Server started on port 4000");

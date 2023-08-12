@@ -1,6 +1,5 @@
 import { React, useContext } from 'react';
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { UserData } from "../App";
 
@@ -9,7 +8,7 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.get("/auth/logout");
+            await axios.get("/taskManager/logout");
             localStorage.removeItem("isLogged");
             window.location.href = "/";
         } catch (error) {
@@ -30,6 +29,7 @@ const Navbar = () => {
                         <>
                             <li><Link to="/">Menu</Link></li>
                             <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/register">Register</Link></li>
                         </>
                 }
             </ul>

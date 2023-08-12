@@ -2,9 +2,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
 import Menu from "./components/Menu";
 import NotFound from "./components/NotFound";
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect, useState, createContext } from "react";
 import Cookies from "js-cookie";
 import Navbar from "./components/Navbar";
+import Register from "./components/Register";
+import TaskCreation from "./components/TaskCreation";
+import UpdateTask from "./components/UpdateTask";
 
 export const UserData = createContext();
 
@@ -13,7 +16,6 @@ const App = () => {
     const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
-        // Get the value of the 'myCookie' cookie
         const cookieValue = Cookies.get('credentials');
         if (cookieValue !== undefined) {
             const credentials = JSON.parse(cookieValue.substring(2));
@@ -29,7 +31,10 @@ const App = () => {
                     <Navbar />
                     <Routes>
                         <Route path="/" element={<Menu />} />
-                        <Route path="/login" element={!isLogged ? <Login /> : "You are already logged in"} />
+                        <Route path="/login" element={!isLogged ? <Login /> : <div>You are already logged in</div>} />
+                        <Route path="/register" element={!isLogged ? <Register /> : <div>You are already logged in</div>} />
+                        <Route path="/createTask" element={isLogged ? <TaskCreation /> : <div>You are not logged in</div>} />
+                        <Route path="/updateTask/:id" element={isLogged ? <UpdateTask /> : <div>You are not logged in</div>} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </UserData.Provider>

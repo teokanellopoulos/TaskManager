@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
-    const [credentials, setCredentials] = useState({userName: "", password: ""});
+const Register = () => {
+    const [credentials, setCredentials] = useState({ userName: "", password: "" });
     const [err, setErr] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCredentials({...credentials, [name]: value});
+        setCredentials({ ...credentials, [name]: value });
     }
 
     const { userName, password } = credentials;
@@ -15,7 +15,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErr("");
-        axios.post("/taskManager/login", { userName, password }).then(() => {
+        axios.post("/taskManager/register", { userName, password }).then(() => {
             window.location.href = "/";
             localStorage.setItem("isLogged", true);
         }).catch((error) => {
@@ -25,7 +25,7 @@ const Login = () => {
 
     return (
         <div>
-            Enter your credentials to login<br/>
+            Enter the following fields to create account<br/>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -34,7 +34,7 @@ const Login = () => {
                     name="userName"
                     required
                     placeholder="Enter username"
-                /><br/>
+                /><br />
                 <input
                     type="password"
                     value={credentials.password}
@@ -42,12 +42,12 @@ const Login = () => {
                     name="password"
                     required
                     placeholder="Enter password"
-                /><br/>
-                <button>Login</button>
+                /><br />
+                <button>Register</button>
             </form>
             {err}
         </div>
     )
 }
 
-export default Login;
+export default Register;
