@@ -15,7 +15,7 @@ const UpdateTask = () => {
     useEffect(() => {
         const getTask = async () => {
             try {
-                const response = await axios.get("/taskManager/getTask", { params: { taskid: id } });
+                const response = await axios.get("/taskManager/getTask", { params: { taskid: id }, withCredentials: true });
                 setTask(response.data);
             } catch (error) {
                 console.log(error)
@@ -36,7 +36,7 @@ const UpdateTask = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErr("");
-        axios.patch("/taskManager/updateTask", { id, taskname, dateofcompletion }).then(() => {
+        axios.patch("/taskManager/updateTask", { id, taskname, dateofcompletion }, { withCredentials: true }).then(() => {
             navigate("/");
         }).catch((error) => {
             setErr(error.response.data.msg);

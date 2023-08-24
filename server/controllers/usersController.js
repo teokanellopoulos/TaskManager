@@ -44,6 +44,8 @@ const usersController = {
                 token: token
             }, {
                 httpOnly: false,
+                sameSite: 'none',
+                secure: true,
                 maxAge: 7 * 24 * 60 * 60 * 1000
             }
             );
@@ -104,12 +106,12 @@ const usersController = {
 
             const task = await db.query("SELECT * FROM tasks WHERE taskname = $1 AND dateofcompletion = $2", [taskname, dateofcompletion]);
 
-            if(task.rows.length !== 0 && task.rows[0].taskid !== parseInt(id)){
+            if (task.rows.length !== 0 && task.rows[0].taskid !== parseInt(id)) {
                 return res.status(400).json({ msg: "Task already exists" });
             }
 
             await db.query("UPDATE tasks SET taskname = $1, dateofcompletion = $2 WHERE taskid = $3", [taskname, dateofcompletion, id]);
-            return res.status(200).json({msg: "Update complete"});
+            return res.status(200).json({ msg: "Update complete" });
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
@@ -119,18 +121,18 @@ const usersController = {
             const { taskid } = req.body;
 
             await db.query("DELETE FROM tasks WHERE taskid = $1", [taskid]);
-            
-            return res.status(200).json({msg: "Deletion complete"});
+
+            return res.status(200).json({ msg: "Deletion complete" });
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
-    }, 
+    },
     completeTask: async (req, res) => {
         try {
             const { id } = req.body;
 
             await db.query("UPDATE tasks SET status = $1 WHERE taskid = $2", [true, id]);
-            return res.status(200).json({msg: "Update complete"});
+            return res.status(200).json({ msg: "Update complete" });
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }
@@ -139,7 +141,7 @@ const usersController = {
         try {
             await db.query("DELETE FROM tasks WHERE userid = $1", [req.id]);
             await db.query("DELETE FROM users WHERE userid = $1", [req.id]);
-            return res.status(200).json({msg: "Account deletion complete"});
+            return res.status(200).json({ msg: "Account deletion complete" });
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }

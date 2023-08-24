@@ -5,7 +5,10 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true // Allow cookies to be sent along with requests
+}));
 app.use(cookieParser());
 
 //initialize routes

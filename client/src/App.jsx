@@ -9,8 +9,10 @@ import Register from "./components/Register";
 import TaskCreation from "./components/TaskCreation";
 import UpdateTask from "./components/UpdateTask";
 import DeleteAccount from "./components/DeleteAccount";
+import axios from "axios";
 
 export const UserData = createContext();
+axios.defaults.baseURL = "http://localhost:4000";
 
 const App = () => {
     const [user, setUser] = useState({});

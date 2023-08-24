@@ -16,7 +16,7 @@ const Menu = () => {
         const getAllTasks = async () => {
             if (isLogged) {
                 try {
-                    const response = await axios.get("/taskManager/getAllTasks");
+                    const response = await axios.get("/taskManager/getAllTasks", { withCredentials: true });
                     setUserTasks(response.data.sort((a, b) => {
                         if (!a.status && b.status) {
                             return -1;
@@ -42,7 +42,7 @@ const Menu = () => {
 
     const handleComplete = async (id) => {
         try {
-            await axios.patch("/taskManager/completeTask", { id });
+            await axios.patch("/taskManager/completeTask", { id }, { withCredentials: true });
             let targetIndex = userTasks.findIndex(task => task.taskid === id);
 
             const updatedTasks = [...userTasks];
@@ -70,7 +70,7 @@ const Menu = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete("/taskManager/deleteTask", { data: { taskid: id } });
+            await axios.delete("/taskManager/deleteTask", { data: { taskid: id }, withCredentials: true });
             setUserTasks(userTasks.filter(task => task.taskid !== id));
         } catch (error) {
             console.log(error);

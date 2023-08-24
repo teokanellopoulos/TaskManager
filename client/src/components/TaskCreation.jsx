@@ -17,7 +17,7 @@ const TaskCreation = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErr("");
-        axios.post("/taskManager/createTask", { taskName, dateOfCompletion }).then(() => {
+        axios.post("/taskManager/createTask", { taskName, dateOfCompletion }, { withCredentials: true }).then(() => {
             navigate("/");
         }).catch((error) => {
             setErr(error.response.data.msg);

@@ -7,7 +7,7 @@ const DeleteAccount = () => {
 
     const handleYes = async () => {
         try {
-            await axios.delete("/taskManager/deleteAccount");
+            await axios.delete("/taskManager/deleteAccount", { withCredentials: true });
             localStorage.removeItem("isLogged");
             window.location.href = "/";
         } catch (error) {

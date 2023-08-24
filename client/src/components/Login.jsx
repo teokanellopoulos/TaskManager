@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import "../css/Login.css";
 
 const Login = () => {
     const [credentials, setCredentials] = useState({userName: "", password: ""});
@@ -15,7 +16,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErr("");
-        axios.post("/taskManager/login", { userName, password }).then(() => {
+        axios.post("/taskManager/login", { userName, password }, { withCredentials: true }).then(() => {
             window.location.href = "/";
             localStorage.setItem("isLogged", true);
         }).catch((error) => {
@@ -24,10 +25,11 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="form-container">
             Enter your credentials to login<br/>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="form-element">
                 <input
+                    className="field-input"
                     type="text"
                     value={credentials.userName}
                     onChange={handleChange}
@@ -36,6 +38,7 @@ const Login = () => {
                     placeholder="Enter username"
                 /><br/>
                 <input
+                    className="field-input"
                     type="password"
                     value={credentials.password}
                     onChange={handleChange}
