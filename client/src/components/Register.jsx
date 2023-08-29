@@ -24,15 +24,16 @@ const Register = () => {
     }
 
     return (
-        <div>
-            Enter the following fields to create account<br/>
-            <form onSubmit={handleSubmit}>
+        <div className="form-container">
+            <form onSubmit={handleSubmit} className="form-element">
+                Enter the following fields to register<br/>
                 <input
                     type="text"
                     value={credentials.userName}
                     onChange={handleChange}
                     name="userName"
                     required
+                    className="field-input"
                     placeholder="Enter username"
                 /><br />
                 <input
@@ -41,11 +42,12 @@ const Register = () => {
                     onChange={handleChange}
                     name="password"
                     required
+                    className="field-input"
                     placeholder="Enter password"
                 /><br />
-                <button>Register</button>
+                <button className="button-element">Register</button>
             </form>
-            {err}
+            <div style={{color: "red", marginTop: "10px"}}>{err}</div>
         </div>
     )
 }

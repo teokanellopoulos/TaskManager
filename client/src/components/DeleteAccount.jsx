@@ -20,10 +20,12 @@ const DeleteAccount = () => {
     }
 
     return (
-        <div>
+        <div className="delete-container">
             Are you sure you want to delete your account?<br/>
-            <button onClick={handleYes}>yes</button>
-            <button onClick={handleNo}>no</button>
+            <div>
+                <button className="yes" onClick={handleYes}>yes</button>
+                <button className="no" onClick={handleNo}>no</button>
+            </div>
         </div>
     )
 }

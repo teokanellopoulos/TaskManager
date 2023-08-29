@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import "../css/Login.css";
 
 const Login = () => {
     const [credentials, setCredentials] = useState({userName: "", password: ""});
@@ -26,8 +25,8 @@ const Login = () => {
 
     return (
         <div className="form-container">
-            Enter your credentials to login<br/>
             <form onSubmit={handleSubmit} className="form-element">
+            Enter your credentials to login<br/>
                 <input
                     className="field-input"
                     type="text"
@@ -46,9 +45,9 @@ const Login = () => {
                     required
                     placeholder="Enter password"
                 /><br/>
-                <button>Login</button>
+                <button className="button-element">Login</button>
             </form>
-            {err}
+            <div style={{color: "red", marginTop: "10px"}}>{err}</div>
         </div>
     )
 }

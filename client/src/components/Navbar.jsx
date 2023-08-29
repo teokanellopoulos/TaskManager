@@ -22,7 +22,7 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="logo"><Link to="/" className="link" onClick={() => setIsNavOpen(!isNavOpen)}>TaskManager</Link></div>
+            <div className="logo"><Link to="/" className="link">TaskManager</Link></div>
             <div>
                 <FontAwesomeIcon icon={faBars} className="bar" onClick={() => setIsNavOpen(!isNavOpen)}/>
                 <ul className={`navbar-links ${isNavOpen ? "open" : ""}`}>

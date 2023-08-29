@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { UserData } from "../App";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faEdit, faFlagCheckered } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../css/Menu.css";
 
 const Menu = () => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Menu = () => {
                         if (a.status && !b.status) {
                             return 1;
                         }
-        
+
                         return 0;
                     }));
                 } catch (error) {
@@ -80,24 +81,27 @@ const Menu = () => {
     return (
         <div>
             {isLogged ?
-                <div>
-                    <button onClick={handleCreate}>Create task</button>
+                <div className="task-container">
+                    <button onClick={handleCreate} className="button-element">Create task</button>
                     {
                         userTasks.map((task, i) =>
-                            <div key={i}>
-                                {task.taskname} {task.dateofcompletion}
-                                {task.status === true ? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faXmark} />}
-                                {task.status === false ? <button onClick={() => handleUpdate(task.taskid)}>Update</button> : <></>}
-                                <button onClick={() => handleDelete(task.taskid)}>Delete</button>
-                                {task.status === false ? <button onClick={() => handleComplete(task.taskid)}>Complete</button> : <></>}
+                            <div key={i} className="task" style={{animationDelay: `${i * 0.2}s`}}>
+                                Task: {task.taskname}<br /> 
+                                Date: {task.dateofcompletion}<br />
+                                Status: {task.status === true ? "Finished" : "Not finished"}
+                                <div className="choice">
+                                    {task.status === false && <FontAwesomeIcon className="edit" icon={faEdit} onClick={() => handleUpdate(task.taskid)} />}
+                                    <FontAwesomeIcon className="delete" icon={faTrashCan} onClick={() => handleDelete(task.taskid)} />
+                                    {task.status === false && <FontAwesomeIcon className="complete" icon={faFlagCheckered} onClick={() => handleComplete(task.taskid)} />}
+                                </div>
                             </div>
                         )
                     }
                 </div>
                 :
-                <div>Welcome to taskManager. Login to create and manage your tasks</div>
+                <div className="welcome">Welcome to taskManager. Login to create and manage your tasks</div>
             }
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }
