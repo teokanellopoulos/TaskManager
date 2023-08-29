@@ -85,7 +85,7 @@ const Menu = () => {
                     <button onClick={handleCreate} className="button-element">Create task</button>
                     {
                         userTasks.map((task, i) =>
-                            <div key={i} className="task" style={{animationDelay: `${i * 0.2}s`}}>
+                            <div key={i} className="task" style={{animationDelay: `${i * 0.1}s`}}>
                                 Task: {task.taskname}<br /> 
                                 Date: {task.dateofcompletion}<br />
                                 Status: {task.status === true ? "Finished" : "Not finished"}

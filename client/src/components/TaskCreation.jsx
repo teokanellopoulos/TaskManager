@@ -25,10 +25,11 @@ const TaskCreation = () => {
     }
 
     return (
-        <div>
-            Enter the following fields to create task<br />
-            <form onSubmit={handleSubmit}>
+        <div className="form-container">
+            <form className="form-element" onSubmit={handleSubmit}>
+                Enter following fields to create task<br />
                 <input
+                    className="field-input"
                     type="text"
                     value={taskName}
                     onChange={handleChange}
@@ -37,6 +38,7 @@ const TaskCreation = () => {
                     placeholder="Enter task name"
                 /><br />
                 <input
+                    className="field-input"
                     type="date"
                     value={dateOfCompletion}
                     onChange={handleChange}
@@ -44,9 +46,9 @@ const TaskCreation = () => {
                     required
                     placeholder="Enter date"
                 /><br />
-                <button>Create</button>
+                <button className="button-element">Create</button>
             </form>
-            {err}
+            <div style={{color: "red", marginTop: "10px"}}>{err}</div>
         </div>
     )
 }

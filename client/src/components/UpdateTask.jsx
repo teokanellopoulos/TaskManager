@@ -44,10 +44,11 @@ const UpdateTask = () => {
     }
 
     return (
-        <div>
-            Update your task<br />
-            <form onSubmit={handleSubmit}>
+        <div className="form-container">
+            <form onSubmit={handleSubmit} className="form-element">
+                Update your task<br />
                 <input
+                    className="field-input"
                     type="text"
                     onChange={handleChange}
                     defaultValue={taskname}
@@ -56,6 +57,7 @@ const UpdateTask = () => {
                     placeholder="Enter task name"
                 /><br />
                 <input
+                    className="field-input"
                     type="date"
                     defaultValue={dateofcompletion}
                     onChange={handleChange}
@@ -63,9 +65,9 @@ const UpdateTask = () => {
                     required
                     placeholder="Enter date"
                 /><br />
-                <button>Update</button>
+                <button className="button-element">Update</button>
             </form>
-            {err}
+            <div style={{color: "red", marginTop: "10px"}}>{err}</div>
         </div>
     )
 }
